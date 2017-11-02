@@ -13,8 +13,8 @@
 ### 二，设计说明
 1. 整体分为 待排序队列（timescope内的id）和 存分数的`SortedSet`两部分
 
-2. 当前时间不在`timeslot`内则`timeslot`可缓存时长： `timescope - timescope / timeslot`
-3. `hot_topic_queue`的过期时间为`timeslot`, 缓存需要展示的`SHOW_AMOUNT`条数据
+2. 当前时间不在`timeslot`内则`timeslot`可保存时长： `timescope - timescope / timeslot`
+3. `hot_topic_queue`的过期时间为`timeslot`, 保存需要展示的`SHOW_AMOUNT`条数据
 4. 各放一个定时worker在`current_expire_time`后重新更新当前`current_expire_time`内更新的帖子
-5. 若定时worker在当前`timescope`的最后一个`slot_expire_time`则更改缓存时间为 `timescope - timescope / timeslot`
+5. 若定时worker在当前`timescope`的最后一个`slot_expire_time`则更改保存时间为 `timescope - timescope / timeslot`
 6. 每个timeslot失效的时候触发所有index左移.

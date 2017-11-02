@@ -34,7 +34,8 @@ module Homeland
     config.i18n.fallbacks = true
 
     config.autoload_paths += [
-      Rails.root.join('lib')
+      Rails.root.join('lib'),
+      Rails.root.join('app/workers')
     ]
     config.eager_load_paths += [
       Rails.root.join('lib/homeland'),
