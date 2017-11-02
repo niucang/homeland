@@ -20,8 +20,24 @@ describe HotTopic, type: :model do
       UpdateWaitTopicListWorker.new.perform
       day_topic = HotTopic.hot_1_topics
       day_topic.push_into_wait_list(999)
-      p day_topic.wait_hot_topics
+
       expect(day_topic.wait_hot_topic_ids.include? 999.to_s).to eq true
+    end
+  end
+
+  describe '.hot_topic_item_score' do
+    it 'should be work' do
+      UpdateWaitTopicListWorker.new.perform
+      day_topic = HotTopic.hot_1_topics
+      HotTopic.batch_push_into_wait_hot_topic_ids(999)
+      HotTopic.incr_score(999, 3)
+      HotTopic.incr_score(999, 1)
+      HotTopic.incr_score(999, 1)
+
+      expect(day_topic.hot_topic_item_score(999)).to eq 5 * day_topic.timeslot_num
+
+      HotTopic.incr_score(999, 1)
+      expect(day_topic.hot_topic_item_score(999)).to eq 5 * day_topic.timeslot_num
     end
   end
 end

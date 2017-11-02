@@ -28,8 +28,8 @@ class HotTopic
   end
 
   def self.incr_score(topic_id, score)
-    hot_7_topics.hot_topic_item_with_timeslot(current_timeslot_index, topic_id).incr(score)
-    hot_1_topics.hot_topic_item_with_timeslot(current_timeslot_index, topic_id).incr(score)
+    hot_7_topics.hot_topic_item_with_timeslot(hot_7_topics.current_timeslot_index, topic_id).incr(score)
+    hot_1_topics.hot_topic_item_with_timeslot(hot_1_topics.current_timeslot_index, topic_id).incr(score)
   end
 
   # 待选队列redis::list
@@ -73,7 +73,7 @@ class HotTopic
   # 每个topic对应的score
   def hot_topic_item_score(topic_id)
     redis_value = Redis::Value.new(hot_topic_item_key(topic_id), expiration: slot_expire_time)
-    return redis_value if redis_value.value.present?
+    return redis_value.value.to_i if redis_value.value.present?
 
     wait_hot_topics_length = current_timeslot_index
 
