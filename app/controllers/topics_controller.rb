@@ -8,6 +8,8 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:ban, :edit, :update, :destroy, :follow,
                                    :unfollow, :action, :ban]
 
+  after_action :hot_topic_handler, only: [:create, :show]
+
   def index
     @suggest_topics = []
     if params[:page].to_i <= 1
@@ -231,5 +233,10 @@ class TopicsController < ApplicationController
         @current = ["/jobs"]
       end
     end
+  end
+
+  def hot_topic_handler
+    HotTopic.batch_push_into_wait_hot_topic_ids(@topic.id)
+    HotTopic.incr_score(@topic.id, 1)
   end
 end
