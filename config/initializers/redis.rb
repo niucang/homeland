@@ -3,8 +3,9 @@ require 'redis-namespace'
 require 'redis/objects'
 
 redis_config = Rails.application.config_for(:redis)
+namespace = "homeland_#{Rails.env}"
 
-$redis = Redis.new(host: redis_config['host'], port: redis_config['port'])
+$redis = Redis.new(host: redis_config['host'], port: redis_config['port'], namespace: namespace)
 $redis.select(0)
 Redis::Objects.redis = $redis
 
