@@ -18,6 +18,12 @@ class UpdateWaitTopicListWorker < BaseWorker
         next
       end
 
+      if index == 0
+        hot_topic.wait_list_item(index).length.times {
+          hot_topic.wait_list_item(index).pop
+        }
+      end
+
       hot_topic.wait_list_item(index + 1).value.each do |list_item|
         hot_topic.wait_list_item(index).add list_item
         hot_topic.wait_list_item(index + 1).pop
