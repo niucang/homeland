@@ -91,6 +91,7 @@ gem 'auto-space'
 
 # 队列
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 
 # 分享功能
 gem 'social-share-button'
@@ -132,6 +133,7 @@ group :development do
   gem 'better_errors'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem "pry-byebug"
 end
 
 group :development, :test do
