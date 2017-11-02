@@ -38,6 +38,9 @@ describe HotTopic, type: :model do
 
       HotTopic.incr_score(999, 1)
       expect(day_topic.hot_topic_item_score(999)).to eq 5 * day_topic.timeslot_num
+      expect(day_topic.hot_topic_sorted_ids.include? "999").to eq true
+
+      expect(day_topic.hot_topic_sorted_set.ttl < day_topic.slot_expire_time * 60).to eq true
     end
   end
 end

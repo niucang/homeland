@@ -87,7 +87,7 @@ class HotTopic
 
   # 热点列表存储set
   def hot_topic_sorted_set
-    Redis::SortedSet.new(hot_topic_key, expiration: timeslot)
+    Redis::SortedSet.new(hot_topic_key, expiration: slot_expire_time)
   end
 
   # 最大分
