@@ -61,7 +61,7 @@ class HotTopic
 
   def wait_list_item(index)
     Redis::Set.new(wait_list_item_key(index), expiration: timescope) if
-     index < timeslot_num
+     index.to_i < timeslot_num
   end
 
   # 每个热点在不同timeslot的Counter
