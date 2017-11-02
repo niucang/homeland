@@ -47,7 +47,7 @@ class HotTopic
   # 待选队列里的topic_ids
   def wait_hot_topic_ids
     ids_set = Set.new
-    wait_hot_topics.each_with_index do |index, _|
+    wait_hot_topics.each_with_index do |_, index|
       ids_set.merge wait_list_item(index)
     end
     ids_set.to_a
