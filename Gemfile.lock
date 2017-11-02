@@ -152,6 +152,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    fakeredis (0.6.0)
+      redis (~> 3.2)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -471,6 +473,7 @@ DEPENDENCIES
   elasticsearch-rails
   exception-track
   factory_girl_rails
+  fakeredis
   font-awesome-rails
   hiredis
   homeland-jobs

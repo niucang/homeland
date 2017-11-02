@@ -140,6 +140,7 @@ group :development, :test do
   gem 'listen'
   gem 'rubocop', '0.47.1', require: false
   gem 'rspec-rails'
+  gem "fakeredis", :require => "fakeredis/rspec"
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'capybara'
