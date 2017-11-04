@@ -11,7 +11,3 @@
   - [mailer, 5]
   - [mailers, 5]
   - [default, 3]
-:schedule:
-  update_wait_topic_list:
-    cron: "* */1 * * *"
-    class: UpdateWaitTopicListWorker
