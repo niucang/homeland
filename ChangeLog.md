@@ -7,14 +7,21 @@
 5. 随着时间推移会有 `timeslot` 的加权
 6. 对于处于当前`timeslot`的时间点会有过期时间`current_expire_time`
 7. 限制数量 `SHOW_AMOUNT = 100`
-8. 热门队列 `hot_topic_queue`
 
 
 ### 二，设计说明
-1. 整体分为 待排序队列（timescope内的id）和 存分数的`SortedSet`两部分
+1. 整体分为 待排序队列`wait_hot_topic_ids` 和 存分数的`hot_topic_sorted_set`两部分
 
-2. 当前时间不在`timeslot`内则`timeslot`可保存时长： `timescope - timescope / timeslot`
-3. `hot_topic_queue`的过期时间为`timeslot`, 保存需要展示的`SHOW_AMOUNT`条数据
-4. 各放一个定时worker在`current_expire_time`后重新更新当前`current_expire_time`内更新的帖子
-5. 若定时worker在当前`timescope`的最后一个`slot_expire_time`则更改保存时间为 `timescope - timescope / timeslot`
-6. 每个timeslot失效的时候触发所有index左移.
+2. `wait_list_item` 存某个`timeslot`内对应的id，过期时间是整个 `timescope`，可由`push_into_wait_list`方法推入待排队列
+
+3. `wait_hot_topic_ids`由`wait_list_item`组成
+
+4. `hot_topic_sorted_set` 的过期时间是 `slot_expire_time（eg: 10min）`, 当存在时则返回，不存在则重新计算 `hot_topic_sorted_set`
+
+5. `hot_topic_sorted_set`的计算目前是遍历所有待排队列`wait_hot_topic_ids`的id, 将由`hot_topic_item_score`获取分数存在`hot_topic_sorted_set`中
+
+6. `hot_topic_item_score` 则是通过遍历某个id对应的所有timeslot 的加权总分
+
+7. 每个id在每个`timeslot`的分数存在 `hot_topic_item_with_timeslot` 中，过期时间是整个`timescope`
+
+8. 通过`beginning_of_timeslot`获取所给的参数`time`获取对应所处的`timeslot`的开始时间，用于区分每个`timeslot`
