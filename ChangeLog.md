@@ -25,3 +25,5 @@
 7. 每个id在每个`timeslot`的分数存在 `hot_topic_item_with_timeslot` 中，过期时间是整个`timescope`
 
 8. 通过`beginning_of_timeslot`获取所给的参数`time`获取对应所处的`timeslot`的开始时间，用于区分每个`timeslot`
+
+9. 将`hot_topic_sorted_set`的过期时间设为timescope，通过worker： `UpdateHotTopicSortedSetWorker` 更新`hot_topic_sorted_set`

@@ -26,6 +26,9 @@ class HotTopic
   def self.batch_push_into_wait_hot_topic_ids(topic_id)
     hot_7_topics.push_into_wait_list(topic_id)
     hot_1_topics.push_into_wait_list(topic_id)
+
+    hot_7_topics.push_into_wait_list_item_of_slot_expire_time(topic_id)
+    hot_1_topics.push_into_wait_list_item_of_slot_expire_time(topic_id)
   end
 
   # 增加分数
@@ -47,17 +50,24 @@ class HotTopic
   end
 
   # 热点列表存储的排序set SortedSet[topic_id] = topic_score
-  # TODO 由于过期时间是 slot_expire_time 重算最高分会导致大量的redis数据读取
-  # ，其实在这段时间内很有可能不会对topic产生影响，考虑加到worker里去手动触发更改过期时间
+  # 过期时间越短 重算最高分会导致大量的redis数据读取
+  # ，其实在这段时间内很有可能不会对topic产生影响
+  # 将过期时间设为timescope的结束点，使用worker更新hot_topic_sorted_set
   def hot_topic_sorted_set
     Redis::SortedSet.new(hot_topic_key,
-                        expireat: slot_expire_time)
+                        expireat: timescope.since(beginning_of_timeslot))
+  end
+
+  # 过期时间slot_expire_time内更新的id
+  def wait_list_item_of_slot_expire_time(beginning_of_slot_expire_time)
+    Redis::Set.new(slot_expire_time_wait_list_item_key(beginning_of_slot_expire_time),
+                  expireat: (slot_expire_time * 2).since(beginning_of_slot_expire_time))
   end
 
   # 每个topic对应的score
   def hot_topic_item_score(topic_id)
     redis_value = Redis::Value.new(hot_topic_item_key(topic_id),
-                                  expiration: slot_expire_time)
+                                  expireat: slot_expire_time.since(beginning_of_slot_expire_time))
     return redis_value.value.to_i if redis_value.value.present?
     score = 0
     beginning_of_timeslot_list.each_with_index do |time, index|
@@ -82,9 +92,19 @@ class HotTopic
     wait_list_item(beginning_of_timeslot).add(topic_id)
   end
 
-  # 最大分
+  # 推入在slot_expire_time时间内更新的topic,在worker中用它来改变hot_topic_sorted_set
+  def push_into_wait_list_item_of_slot_expire_time(topic_id)
+    wait_list_item_of_slot_expire_time(beginning_of_slot_expire_time).add(topic_id)
+  end
+
+  # 最热门的100条
   def max_num_members
     hot_topic_sorted_set.members.reverse[0..(MAX_NUM - 1)]
+  end
+
+  # 热门100条的最小分数
+  def min_score
+    hot_topic_sorted_set[max_num_members.last]
   end
 
   # 热点列表id
@@ -97,8 +117,18 @@ class HotTopic
       redis_sorted_set[topic_id] = hot_topic_item_score(topic_id)
     end
     # 如果比最小分数小则删除
-    redis_sorted_set.delete_if{|key| redis_sorted_set[key] < redis_sorted_set[max_num_members.last]}
+    redis_sorted_set.delete_if{|key| redis_sorted_set[key] < min_score}
     max_num_members
+  end
+
+  # 获取当前所处的slot_expire_time，作为标志热点列表的过期时间
+  #
+  def beginning_of_slot_expire_time(time = Time.now)
+    raise "only suppurt timeslot <= 1.days of this method" if timeslot > 1.days
+    hour = time.hour
+    min = time.min
+    offset_seconds = (hour * 60 * 60 + min * 60) / slot_expire_time * slot_expire_time
+    offset_seconds.seconds.since time.beginning_of_day
   end
 
   # 获取当前所处的time slot，作为标志一个topic对应的某个时间点
@@ -128,6 +158,11 @@ class HotTopic
   # 等待队列各timeslot的key
   def wait_list_item_key(time)
     "#{wait_hot_topic_key}/wait_list/#{time.to_i}"
+  end
+
+  # 等待队列各slot_expire_time的key
+  def slot_expire_time_wait_list_item_key(time)
+    "#{wait_hot_topic_key}/slot_expire_time/#{time.to_i}"
   end
 
   # 等待队列的key

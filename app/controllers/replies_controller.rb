@@ -12,7 +12,6 @@ class RepliesController < ApplicationController
     if @reply.save
       current_user.read_topic(@topic)
 
-      @topic.reply_num.incr
       HotTopic.batch_push_into_wait_hot_topic_ids(@topic.id)
       HotTopic.incr_score(@topic.id, 1)
 

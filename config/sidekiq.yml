@@ -11,3 +11,14 @@
   - [mailer, 5]
   - [mailers, 5]
   - [default, 3]
+:schedule:
+  update_hot_topic_sorted_set:
+    cron: "0 */1 * * *"
+    class: UpdateHotTopicSortedSetWorker
+    args: 7
+    description: 'every 1hours run for 7 days hot topic'
+  update_hot_topic_sorted_set:
+    cron: "*/10 * * * *"
+    class: UpdateHotTopicSortedSetWorker
+    args: 1
+    description: 'every 10mins run for 1 day hot topic'
