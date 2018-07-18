@@ -27,7 +27,11 @@ Rails.application.routes.draw do
     passwords: :passwords,
     omniauth_callbacks: "auth/omniauth_callbacks"
   }
-
+  devise_scope :user do
+    get 'account/sign_up_with_mobile', to: "account#sign_up_with_mobile", as: 'sign_up_with_mobile_account'
+    post 'account/create_with_mobile', to: "account#create_with_mobile", as: 'create_with_mobile_account'
+    get 'account/get_msg_code', to: "account#get_msg_code", as: 'get_msg_code_account'
+  end
   resource :setting do
     member do
       get :account

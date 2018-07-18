@@ -42,6 +42,10 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :name, length: { maximum: 20 }
 
+  validates :mobile_phone, format: { with: /\A1[0-9]{10}\Z/, message: "格式不正确" },
+                           allow_nil: true,
+                           uniqueness: { message: "已被使用" }
+
   after_commit :send_welcome_mail, on: :create
 
   scope :hot, -> { order(replies_count: :desc).order(topics_count: :desc) }
@@ -115,6 +119,10 @@ class User < ApplicationRecord
     self[:email] = val
   end
 
+  def init_email
+    self.email = "#{self.login}@example.com" if email.blank?
+  end
+
   def password_required?
     (authorizations.empty? || !password.blank?) && super
   end
@@ -125,7 +133,9 @@ class User < ApplicationRecord
   end
 
   def send_welcome_mail
-    UserMailer.welcome(id).deliver_later
+    unless self.email.match?(/example\.com/)
+      UserMailer.welcome(id).deliver_later
+    end
   end
 
   def profile_url

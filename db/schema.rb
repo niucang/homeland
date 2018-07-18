@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_093642) do
+ActiveRecord::Schema.define(version: 2018_07_18_125135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -396,11 +396,13 @@ ActiveRecord::Schema.define(version: 2018_06_14_093642) do
     t.integer "team_users_count"
     t.integer "followers_count", default: 0
     t.integer "following_count", default: 0
+    t.string "mobile_phone"
     t.index "lower((login)::text) varchar_pattern_ops", name: "index_users_on_lower_login_varchar_pattern_ops"
     t.index "lower((name)::text) varchar_pattern_ops", name: "index_users_on_lower_name_varchar_pattern_ops"
     t.index ["email"], name: "index_users_on_email"
     t.index ["location"], name: "index_users_on_location"
     t.index ["login"], name: "index_users_on_login"
+    t.index ["mobile_phone"], name: "index_users_on_mobile_phone"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
