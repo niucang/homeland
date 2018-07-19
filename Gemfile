@@ -124,6 +124,10 @@ gem "sdoc", "~> 1.0.0.rc3"
 
 gem "bootsnap"
 
+gem 'aliyun-sms', '1.1.1', git: 'https://github.com/VICTOR-LUO-F/aliyun-sms.git', require: false
+# Simple Rails app configuration
+gem "figaro"
+
 group :development do
   gem "derailed"
   # Better Errors

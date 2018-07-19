@@ -43,3 +43,6 @@ spec/examples.txt
 .byebug_history
 .ruby-version
 /storage/*
+
+# Ignore application configuration
+/config/application.yml
