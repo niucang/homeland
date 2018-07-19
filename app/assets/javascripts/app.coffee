@@ -29,6 +29,7 @@
 #= require jquery.infinitescroll.min
 #= require d3.min
 #= require cal-heatmap.min
+#= require send_verfiy_sms_code
 #= require_self
 
 AppView = Backbone.View.extend

@@ -15,8 +15,9 @@
         </div>
         <div class="form-group">
           <div class="input-group">
-              <%= f.number_field :mobile_phone, class: 'form-control input-lg', placeholder: '11位手机号' %>
-              <span class="input-group-addon ml-2"><a class="btn btn-info" href="#">获取验证码</a></span>
+              <%= f.number_field :mobile_phone, class: 'form-control input-lg', id: 'phone', placeholder: '11位手机号' %>
+              <span class="input-group-addon ml-2"><a class="btn btn-success" id="J_getCode" onclick="getCode(this)">获取验证码</a></span>
+              <span class="input-group-addon ml-2"><a class="btn btn-warning" id="J_resetCode" style="display: none;"><span id="J_second">60</span>秒后重发</a></span>
           </div>
         </div>
         <div class="form-group">

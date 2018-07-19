@@ -38,7 +38,7 @@ class AccountController < Devise::RegistrationsController
   end
 
   def get_msg_code
-    MsgCodeService.send_code_and_cache_sms(params[:mobile_phone])
+    ::MsgCodeService.send_code_and_cache_sms(params[:mobile_phone])
   end
 
   private

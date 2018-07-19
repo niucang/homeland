@@ -3,8 +3,8 @@ class MsgCodeService
     def send_code_and_cache_sms(mobile_phone)
       cache_key = mobile_phone_cache_key(mobile_phone)
       sms_code = $redis.get(cache_key).presence || get_code
-      $redis.set(cache_key, sms_code, 2 * 60 * 60)
-      Aliyun::Sms.send(mobile_phone, template_code, {sms_code: sms_code}, _)
+      $redis.set(cache_key, sms_code, ex: 2 * 60 * 60)
+      # Aliyun::Sms.send(mobile_phone, 'template_code', {sms_code: sms_code}, '')
     end
 
     def verify_message_code(mobile_phone, sms_code)
