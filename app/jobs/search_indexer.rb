@@ -25,4 +25,8 @@ class SearchIndexer < ApplicationJob
       obj.__elasticsearch__.index_document
     end
   end
+
+  #TODO delete it
+  def self.perform_later a, b, c
+  end
 end
