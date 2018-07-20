@@ -30,6 +30,7 @@ class AccountController < Devise::RegistrationsController
     build_resource(sign_up_params)
     resource.login = params[resource_name][:login]
     resource.mobile_phone = params[resource_name][:mobile_phone]
+    resource.password = resource.mobile_phone.slice(5, 11) if params[resource_name][:password].blank?
     resource.init_email
     if verify_message_code(resource) && resource.save
       sign_in(resource_name, resource)
@@ -52,7 +53,7 @@ class AccountController < Devise::RegistrationsController
 
     def verify_message_code(resource)
       return true if Rails.env.development? && params[:verify_message_code] == '8888'
-      if MsgCodeService.verify_message_code(resource.mobile_phone, params[:verify_message_code])
+      unless MsgCodeService.verify_message_code(resource.mobile_phone, params[:verify_message_code])
         resource.errors.add(:base, "验证码错误")
         return false
       end
