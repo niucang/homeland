@@ -72,7 +72,9 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: Setting.domain, protocol: Setting.protocol }
-
+  Rails.logger.info(Setting.methods)
+  Rails.logger.info(Setting.mailer_provider)
+  Rails.logger.info('#' * 99)
   config.action_mailer.delivery_method = Setting.mailer_provider.to_sym
   if Setting.mailer_provider == "postmark"
     config.action_mailer.postmark_settings = Setting.mailer_options.deep_symbolize_keys
