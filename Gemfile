@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source "https://gems.ruby-china.com"
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
@@ -127,6 +127,12 @@ gem "bootsnap"
 gem 'aliyun-sms', '1.1.1', git: 'https://github.com/VICTOR-LUO-F/aliyun-sms.git', require: false
 # Simple Rails app configuration
 gem "figaro"
+# Blazing fast application deployment tool
+gem 'mina', require: false
+# Puma tasks for Mina
+gem 'mina-puma', require: false
+# mina sidekiq
+gem 'mina-sidekiq', require: false
 
 group :development do
   gem "derailed"
