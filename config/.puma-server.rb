@@ -22,4 +22,3 @@ end
 before_fork do
   ActiveRecord::Base.connection_pool.disconnect!
 end
-s
