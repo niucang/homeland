@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
                                               favorite unfavorite follow unfollow
                                               action favorites]
   # 权限控制
-  # load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow]
+  load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow]
   before_action :set_topic, only: %i[edit update destroy follow unfollow action ban]
 
   def index
