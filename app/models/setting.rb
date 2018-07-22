@@ -62,8 +62,8 @@ class Setting < RailsSettings::Base
     topic_create_hour_limit_count
   ]
 
-  field :app_name, default: "Homeland"
-  field :navbar_brand_html, default: -> { %(<a href="/" class="navbar-brand"><b>#{self.app_name}</b></a>) }
+  field :app_name, default: "普惠社区"
+  field :navbar_brand_html, default: -> { %(<a href="/" class="navbar-brand"><img src="/icon.jpg" /><b>#{self.app_name}</b></a>) }
   field :default_locale, default: "zh-CN"
   field :auto_locale, default: "false", type: :boolean
   field :reject_newbie_reply_in_the_evening, default: "false", type: :boolean
