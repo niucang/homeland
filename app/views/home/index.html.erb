@@ -4,7 +4,7 @@
   <div class="card hidden-xs">
     <div class="card-body" style="text-align: center;">
       <div class="media" style="">
-        <div class="swiper-container swiper-container-horizontal">
+        <div class="swiper-container">
           <div class="swiper-wrapper">
             <% ['banner1.jpg', 'banner2.jpg', 'banner3.jpg'].each do |url| %>
               <div class='swiper-slide'>
@@ -13,12 +13,40 @@
             <% end %>
           </div>
           <div class="swiper-pagination"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">Sign In</div>
+            <div class="card-body">
+              <form class="new_user" id="new_user" action="/account/sign_in" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
+                <div class="form-group">
+                  <input class="form-control input-lg" placeholder="用户名 / Email" type="text" name="user[login]" id="user_login">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control input-lg" placeholder="密码" name="user[password]" id="user_password">
+                </div>
+
+                <div class="form-group from-check">
+                  <label class="form-check-label" for="user_remember_me">
+                    <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+                    Remember me (2 months)
+                  </label>
+                </div>
+
+                <div class="form-actions">
+                  <input type="submit" name="commit" value="Sign In" class="btn btn-primary btn-lg btn-block" data-disable-with="Sign In...">
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
   </div>
+
   <div class="row home-icons hidden-sm hidden-xs">
     <div class="col-md-2">
       <div class="item item1">

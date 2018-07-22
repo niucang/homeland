@@ -423,15 +423,12 @@ window.App =
 document.addEventListener 'turbolinks:load',  ->
   window._appView = new AppView()
   new Swiper('.swiper-container',
-    direction: 'horizontal'
     autoplay:
       delay: 2500
-    pagination:".swiper-pagination"
-    paginationClickable:true
-    autoplayDisableOnInteraction: false
-    prevButton:".swiper-button-prev"
-    nextButton:".swiper-button-next"
-    scrollbar: '.swiper-scrollbar')
+      disableOnInteraction: false
+    pagination:
+      el: ".swiper-pagination"
+      clickable: true)
 
 document.addEventListener 'turbolinks:click', (event) ->
   if event.target.getAttribute('href').charAt(0) is '#'
