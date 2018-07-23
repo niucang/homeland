@@ -12,6 +12,8 @@ class BaseUploader < CarrierWave::Uploader::Base
   #
   # Photo
   # large - 1920x? - 限定宽度，高度自适应
+  #
+  storage :qiniu
   ALLOW_VERSIONS = %w[xs sm md lg large]
 
   def store_dir
@@ -23,7 +25,7 @@ class BaseUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w[jpg jpeg gif png svg]
+    %w[jpg jpeg gif png svg mp4]
   end
 
   def url(version_name = nil)
@@ -40,7 +42,7 @@ class BaseUploader < CarrierWave::Uploader::Base
     when "upyun"
       [@url, version_name].join("!")
     else
-      [@url, version_name].join("!")
+      [@url, "imageView2/1/w/#{qiniuyun_thumb_key(version_name)}"].join("?")
     end
   end
 
@@ -55,6 +57,18 @@ class BaseUploader < CarrierWave::Uploader::Base
       when "xs"    then "resize,w_32,h_32,m_fill"
       else
         "resize,w_32,h_32,m_fill"
+      end
+    end
+
+    def qiniuyun_thumb_key(version_name)
+      case version_name
+      when "large" then "1920"
+      when "lg"    then "192/h/192"
+      when "md"    then "96/h/96"
+      when "sm"    then "48/h/48"
+      when "xs"    then "32/h/32"
+      else
+        "32/h/32"
       end
     end
 end
