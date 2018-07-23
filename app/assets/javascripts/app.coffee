@@ -31,6 +31,7 @@
 #= require cal-heatmap.min
 #= require send_verfiy_sms_code
 #= require swiper.min
+#= require home
 #= require_self
 
 AppView = Backbone.View.extend

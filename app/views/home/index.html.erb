@@ -16,13 +16,22 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row login">
       <div class="col"></div>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <div class="card">
-            <div class="card-header">Sign In</div>
+            <div class="card-header">
+              <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                  <a class="nav-link active password-login" href="#">账号密码登录</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link qrcode-login" href="#">扫码登录</a>
+                </li>
+              </ul>
+            </div>
             <div class="card-body">
-              <form class="new_user" id="new_user" action="/account/sign_in" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
+              <form class="new_user login-password" id="new_user" action="/account/sign_in" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
                 <div class="form-group">
                   <input class="form-control input-lg" placeholder="用户名 / Email" type="text" name="user[login]" id="user_login">
                 </div>
@@ -31,16 +40,25 @@
                 </div>
 
                 <div class="form-group from-check">
-                  <label class="form-check-label" for="user_remember_me">
+                  <label class="form-check-label tip" for="user_remember_me">
                     <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
-                    Remember me (2 months)
+                    下次自动登录
                   </label>
+                  <%= link_to '忘记秘密？', '/account/password/new', class: 'pull-right tip' %>
                 </div>
 
                 <div class="form-actions">
-                  <input type="submit" name="commit" value="Sign In" class="btn btn-primary btn-lg btn-block" data-disable-with="Sign In...">
+                  <input type="submit" name="commit" value="登录" class="btn btn-primary btn-block" data-disable-with="登录中...">
                 </div>
               </form>
+              <%= link_to '注册', '/account/sign_up', class: 'btn btn-outline-primary btn-block login-password' %>
+              <div class="qrcode" style="display: none;">
+                <div class="qr_safe_tips">安全登录，防止被盗</div>
+                <img src="/images/pic2.jpg" alt="" class="qr-img">
+                <div class="qr_app_name">
+                  <div>使用微信扫描登录</div>
+                </div>
+              </div>
             </div>
           </div>
       </div>

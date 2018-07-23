@@ -107,4 +107,59 @@ h2 {
       }
     }
   }
+  .login.row {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 6%;
+    .col-md-4 {
+      max-width: 29%;
+    }
+    .card {
+      .card-header {
+        .nav-item {
+          width: 50%;
+          text-align: center;
+          .nav-link {
+            color: #999;
+            &.active {
+              color: #333;
+              background-color: #fafafa;
+            }
+          }
+        }
+      }
+      .card-body {
+        padding: 21px 23px;
+        form {
+          margin-bottom: 18px;
+        }
+        .tip {
+          color: #999;
+        }
+        .qrcode {
+          height: 227px;
+          text-align: center;
+          .qr_safe_tips {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 15px;
+          }
+          .qr_app_name {
+            background: #f1f1f1;
+            border-radius: 5px;
+            padding: 2px;
+            width: 62%;
+            margin: 15px 0 0 19.5%;
+          }
+        }
+        .qr-img {
+          border: 1px solid #D3D3D3;
+          height: 135px;
+          width: 135px;
+        }
+      }
+    }
+
+  }
 }
