@@ -6,6 +6,14 @@ GIT
       typhoeus
 
 GIT
+  remote: https://github.com/niucang/omniauth-wechat-oauth2.git
+  revision: 66979ecfa869db9d95ff5d7450da1fa8df34663e
+  specs:
+    omniauth-wechat-oauth2 (0.1.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
+GIT
   remote: https://github.com/rails/jbuilder.git
   revision: a0dc0bd42737aaef3dd622d8338a816aed03c8ff
   specs:
@@ -529,6 +537,7 @@ DEPENDENCIES
   notifications
   omniauth
   omniauth-github
+  omniauth-wechat-oauth2 (= 0.1.1)!
   pg
   pghero
   postmark
