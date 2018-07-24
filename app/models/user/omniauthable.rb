@@ -25,29 +25,53 @@ class User
             else
               "#{provider}+#{uid}@example.com"
             end
-
-          user.name  = data["name"]
-          user.login = Homeland::Username.sanitize(data["nickname"])
-
           if provider == "github"
+            user.name  = data["name"]
+            user.login = Homeland::Username.sanitize(data["nickname"])
             user.github = data["nickname"]
-          end
 
-          if user.login.blank?
-            user.login = "u#{Time.now.to_i}"
-          end
+            if user.login.blank?
+              user.login = "u#{Time.now.to_i}"
+            end
 
-          if User.where(login: user.login).exists?
-            user.login = "#{user.github}-github" # TODO: possibly duplicated user login here. What should we do?
-          end
+            if User.where(login: user.login).exists?
+              user.login = "#{user.github}-github" # TODO: possibly duplicated user login here. What should we do?
+            end
 
-          user.password = Devise.friendly_token[0, 20]
-          user.location = data["location"]
-          user.tagline  = data["description"]
+            user.password = Devise.friendly_token[0, 20]
+            user.location = data["location"]
+            user.tagline  = data["description"]
+          elsif ['wechat', 'open_wechat'].include? provider
+            user.name = data["nickname"]
+            user.wechat = data["nickname"]
+
+            # 处理login的逻辑
+            # 微信用户名到login的处理方式
+            # 1. 去除所有emoji。2. 所有中文全部换成汉语拼音 3. 其他非字母字符都换成下划线 sanitize
+            login_name = data["nickname"]
+            if login_name.is_a? String
+              login_name = Homeland::Username.strip_emoji(login_name)
+              login_name = Pinyin.t(login_name, splitter: '')
+              user.login = Homeland::Username.sanitize(login_name)
+            else
+              user.login = ""
+            end
+
+            if user.login.blank?
+              user.login = "u#{Time.now.to_i}"
+            end
+
+            if User.where(login: user.login).exists?
+              user.login = "#{user.wechat}-wechat" # TODO: possibly duplicated user login here. What should we do?
+            end
+
+            user.password = Devise.friendly_token[0, 20]
+            user.location = data["city"]
+          end
         end
       end
 
-      %w[github].each do |provider|
+      %w[github wechat open_wechat].each do |provider|
         define_method "find_or_create_for_#{provider}" do |response|
           uid  = response["uid"].to_s
           data = response["info"]

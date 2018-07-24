@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/niucang/omniauth-wechat-oauth2.git
-  revision: 66979ecfa869db9d95ff5d7450da1fa8df34663e
+  revision: 3e51661ce836de4c171167cd8545948d577a526f
   specs:
-    omniauth-wechat-oauth2 (0.1.1)
+    omniauth-wechat-oauth2 (0.1.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
 
@@ -108,6 +108,7 @@ GEM
     carrierwave-qiniu (1.1.5)
       carrierwave (~> 1.0)
       qiniu (~> 6.8, >= 6.8.0)
+    chinese_pinyin (1.0.1)
     codecov (0.1.10)
       json
       simplecov
@@ -498,6 +499,7 @@ DEPENDENCIES
   capybara
   carrierwave
   carrierwave-qiniu
+  chinese_pinyin
   codecov
   coffee-rails
   dalli
@@ -537,7 +539,7 @@ DEPENDENCIES
   notifications
   omniauth
   omniauth-github
-  omniauth-wechat-oauth2 (= 0.1.1)!
+  omniauth-wechat-oauth2 (= 0.1.2)!
   pg
   pghero
   postmark

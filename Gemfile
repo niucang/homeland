@@ -134,7 +134,8 @@ gem 'mina', require: false
 gem 'mina-puma', require: false
 # mina sidekiq
 gem 'mina-sidekiq', require: false
-gem "omniauth-wechat-oauth2", '0.1.1', git: 'https://github.com/niucang/omniauth-wechat-oauth2.git'
+gem "omniauth-wechat-oauth2", '0.1.2', git: 'https://github.com/niucang/omniauth-wechat-oauth2.git'
+gem 'chinese_pinyin'
 
 group :development do
   gem "derailed"
