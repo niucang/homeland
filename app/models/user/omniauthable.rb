@@ -44,7 +44,7 @@ class User
             user.tagline  = data["description"]
           elsif ['wechat', 'open_wechat'].include? provider
             user.name = data["nickname"]
-            user.wechat = data["nickname"]
+            user.unionid = data["unionid"]
 
             # 处理login的逻辑
             # 微信用户名到login的处理方式
@@ -63,7 +63,7 @@ class User
             end
 
             if User.where(login: user.login).exists?
-              user.login = "#{user.wechat}-wechat" # TODO: possibly duplicated user login here. What should we do?
+              user.login = "#{user.name}-wechat" # TODO: possibly duplicated user login here. What should we do?
             end
 
             user.password = Devise.friendly_token[0, 20]
