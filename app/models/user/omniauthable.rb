@@ -18,6 +18,7 @@ class User
 
     module ClassMethods
       def new_from_provider_data(provider, uid, data)
+        Rails.logger.info('new_from_provider_data', provider, uid, data)
         User.new do |user|
           user.email =
             if data["email"].present? && !User.where(email: data["email"]).exists?
