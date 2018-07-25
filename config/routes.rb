@@ -95,6 +95,7 @@ Rails.application.routes.draw do
   end
 
   resources :photos
+  resources :videos
   resources :likes
 
   get "/search", to: "search#index", as: "search"
@@ -119,6 +120,7 @@ Rails.application.routes.draw do
       end
     end
     resources :photos
+    resources :videos
     resources :comments
     resources :locations
     resources :applications
@@ -136,6 +138,7 @@ Rails.application.routes.draw do
       resource :likes
       resources :nodes
       resources :photos
+      resources :videos
       resources :notifications do
         collection do
           post :read

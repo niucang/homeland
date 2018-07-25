@@ -3,6 +3,7 @@ window.Editor = Backbone.View.extend
 
   events:
     "click #editor-upload-image": "browseUpload"
+    "click #editor-upload-video": "browseUpload"
     "click .insert-codes a": "appendCodesFromHint"
     "click .pickup-emoji": "pickupEmoji"
 
@@ -118,6 +119,13 @@ window.Editor = Backbone.View.extend
     @insertString(src_merged)
     return false
 
+  appendvideoFromUpload : (srcs) ->
+    src_merged = ""
+    for src in srcs
+      src_merged = "![](#{src})\n"
+    @insertString(src_merged)
+    return false
+
   # 往编辑器里面的光标前插入两个空白字符
   insertSpaces : (e) ->
     @insertString('  ')
@@ -163,4 +171,3 @@ window.Editor = Backbone.View.extend
       window._emojiModal = new EmojiModalView()
     window._emojiModal.show()
     false
-

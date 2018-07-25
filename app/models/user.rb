@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :authorizations, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :photos
+  has_many :videos
   has_many :oauth_applications, class_name: "Doorkeeper::Application", as: :owner
   has_many :devices
   has_many :team_users

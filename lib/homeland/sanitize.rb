@@ -34,8 +34,8 @@ module Homeland
       if node["src"].match?(%r{\A(?:http[s]{0,1}?:)?//player\.youku\.com/embed/})
         valid_video_url = true
       end
-
-      return unless valid_video_url
+      # TODO去掉限制
+      # return unless valid_video_url
 
       # We're now certain that this is a YouTube embed, but we still need to run
       # it through a special Sanitize step to ensure that no unwanted elements or
