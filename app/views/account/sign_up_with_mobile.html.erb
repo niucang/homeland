@@ -35,5 +35,24 @@
       </div>
     </div>
   </div>
-  <div class="col"></div>
+  <div class="col">
+    <div class="col">
+      <div class="card">
+        <div class="card-header"><%= t("common.auth_with_other_services") %></div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <%= link_to raw("<i class='fa fa-wechat'></i> 微信"), omniauth_authorize_path(:user, mobile? ? :wechat : :open_wechat), class: "btn btn-default btn-lg btn-block" %>
+          </li>
+          <li class="list-group-item">
+            <%= link_to raw("<i class='fa fa-envelope'></i> 邮箱"), new_user_registration_path, class: "btn btn-default btn-lg btn-block" %>
+          </li>
+          <% if Setting.has_module? :github %>
+          <li class="list-group-item">
+            <%= link_to raw("<i class='fa fa-github'></i> GitHub"), omniauth_authorize_path(:user, :github), class: "btn btn-default btn-lg btn-block" %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

@@ -50,11 +50,9 @@
     </li>
   <% else %>
     <% if !Setting.sso_enabled? %>
-    <li class="nav-item"><%= link_to t("common.register"), main_app.new_user_registration_path, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to t("common.register"), main_app.sign_up_with_mobile_account_path, class: "nav-link" %></li>
     <% end %>
 
     <li class="nav-item"><%= link_to t("common.login"), main_app.new_user_session_path, class: "nav-link" %></li>
   <% end %>
 </ul>
-
-

@@ -1,4 +1,4 @@
-<% if !mobile? %>
+<% if !mobile? && !current_user %>
 <div class="hide-ios">
   <!-- <%= raw Setting.index_html %> -->
   <div class="card hidden-xs">
@@ -26,7 +26,7 @@
                   <a class="nav-link active password-login" href="#">账号密码登录</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link qrcode-login" href="#">扫码登录</a>
+                  <%= link_to '微信扫码登录', omniauth_authorize_path(:user, :open_wechat), class: 'nav-link qrcode-login' %>
                 </li>
               </ul>
             </div>
