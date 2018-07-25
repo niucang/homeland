@@ -77,6 +77,11 @@ class User
           uid  = response["uid"].to_s
           data = response["info"]
 
+          if ['open_wechat', 'wechat'].include?(provider)
+            find_provider = ['open_wechat', 'wechat']
+          else
+            find_provider = provider
+          end
           user = Authorization.find_by(provider: provider, uid: uid).try(:user)
           return user if user
 
