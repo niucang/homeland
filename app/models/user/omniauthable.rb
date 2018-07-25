@@ -74,6 +74,7 @@ class User
 
       %w[github wechat open_wechat].each do |provider|
         define_method "find_or_create_for_#{provider}" do |response|
+          Rails.logger.info("response: #{response} provider: #{provider}")
           uid  = response["uid"].to_s
           data = response["info"]
 
@@ -82,7 +83,8 @@ class User
           else
             find_provider = provider
           end
-          user = Authorization.find_by(provider: provider, uid: uid).try(:user)
+          Rails.logger.info("find_provider: #{find_provider}")
+          user = Authorization.find_by(provider: find_provider, uid: uid).try(:user)
           return user if user
 
           user = User.new_from_provider_data(provider, uid, data)
