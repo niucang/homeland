@@ -63,7 +63,7 @@ class User
             end
 
             if User.where(login: user.login).exists?
-              user.login = "#{user.name}-wechat" # TODO: possibly duplicated user login here. What should we do?
+              user.login = "#{user.login}-wechat" # TODO: possibly duplicated user login here. What should we do?
             end
 
             user.password = Devise.friendly_token[0, 20]
