@@ -30,6 +30,7 @@ class User
             user.name  = data["name"]
             user.login = Homeland::Username.sanitize(data["nickname"])
             user.github = data["nickname"]
+            user.remote_avatar_url = data["headimgurl"]
 
             if user.login.blank?
               user.login = "u#{Time.now.to_i}"
