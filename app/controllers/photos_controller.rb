@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
 
     @photo.user_id = current_user.id
     if @photo.save
-      render json: { ok: true, url: @photo.image.url(:large) }
+      render json: { ok: true, url: @photo.image.url(:large), type: 'photo' }
     else
       render json: { ok: false }
     end

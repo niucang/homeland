@@ -21,7 +21,11 @@ window.Editor = Backbone.View.extend
       self.handlePaste(event)
 
     dropzone = editor_dropzone.dropzone(
-      url: "/photos"
+      url: (file, x) ->
+        if file[0].type.includes 'image'
+          '/photos'
+        else
+          '/videos'
       dictDefaultMessage: ""
       clickable: true
       paramName: "file"
@@ -30,9 +34,9 @@ window.Editor = Backbone.View.extend
       headers:
         "X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr("content")
       previewContainer: false
-      processing: ->
+      processing: (file)->
         $(".div-dropzone-alert").alert "close"
-        self.showUploading()
+        self.showUploading(file.type)
       dragover: ->
         editor.addClass "div-dropzone-focus"
         return
@@ -44,7 +48,10 @@ window.Editor = Backbone.View.extend
         editor.focus()
         return
       success: (header, res) ->
-        self.appendImageFromUpload([res.url])
+        if res.type == 'photo'
+          self.appendImageFromUpload([res.url])
+        else
+          self.appendvideoFromUpload([res.url])
         return
       error: (temp, msg) ->
         App.alert(msg)
@@ -122,7 +129,7 @@ window.Editor = Backbone.View.extend
   appendvideoFromUpload : (srcs) ->
     src_merged = ""
     for src in srcs
-      src_merged = "![](#{src})\n"
+      src_merged = "<iframe height=450 width=800 src=\"#{src}\" frameborder=0 allowfullscreen></iframe>\n"
     @insertString(src_merged)
     return false
 
