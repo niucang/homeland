@@ -4,6 +4,7 @@ class Section < ApplicationRecord
   second_level_cache expires_in: 2.weeks
 
   has_many :nodes, dependent: :destroy
+  has_many :topics, through: :nodes
 
   validates :name, presence: true, uniqueness: true
 

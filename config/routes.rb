@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :devices
   resources :teams
+  resources :sections, only: [:show]
 
   if Setting.has_module?(:home)
     root to: "home#index"

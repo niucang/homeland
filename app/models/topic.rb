@@ -43,6 +43,10 @@ class Topic < ApplicationRecord
     exclude_column_ids("node_id", ids)
   }
 
+  scope :by_section_ids, ->(id) {
+    joins(node: :section).where("sections.id in (?)", id)
+  }
+
   before_save { self.node_name = node.try(:name) || "" }
   before_create { self.last_active_mark = Time.now.to_i }
 
