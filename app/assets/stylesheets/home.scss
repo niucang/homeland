@@ -116,7 +116,19 @@ h2 {
       max-width: 29%;
     }
     .card {
+      border-radius: 1rem;
+      border-color: rgb(226, 241, 231);
       .card-header {
+        border-radius: calc(1rem - 1px) calc(1rem - 1px) 0 0;
+        background: white;
+        border-bottom: 0;
+        text-align: center;
+        font-size: 19px;
+        color: #575757;
+        text-align: center;
+        line-height: 33px;
+        font-weight: bold;
+        padding-bottom: 0;
         .nav-item {
           width: 50%;
           text-align: center;
@@ -130,9 +142,24 @@ h2 {
         }
       }
       .card-body {
-        padding: 21px 23px;
+        padding: 5px 23px 4px 23px;
         form {
           margin-bottom: 18px;
+          .form-actions {
+            & > * {
+              width: 49%;
+              border-color: rgb(84, 175, 254);
+            }
+            .btn-primary {
+              background-color: rgb(84, 175, 254);
+            }
+            .btn-outline-primary {
+              color: rgb(84, 175, 254);
+            }
+          }
+          .from-check {
+            margin-bottom: 0.8rem;
+          }
         }
         .tip {
           color: #999;
@@ -157,6 +184,36 @@ h2 {
           border: 1px solid #D3D3D3;
           height: 135px;
           width: 135px;
+        }
+        .btn-wechat {
+          border-radius: 1rem;
+          background-color: rgb(52, 202, 22);
+          border-color: rgb(52, 202, 22);
+        }
+        .login-form-line {
+            height: 15px;
+            margin: 9px auto 25px;
+            position: relative;
+            border-bottom: 1px solid #dcdcdc;
+            p {
+                position: absolute;
+                left: 50%;
+                top: 0;
+                transform: translate3D(-50%, 0, 0);
+                -webkit-transform: translate3D(-50%, 0, 0);
+                -ms-transform: translate3D(-50%, 0, 0);
+                width: 29px;
+                height: 29px;
+                background: #fff;
+                border-radius: 15px;
+                -webkit-border-radius: 15px 15px 15px 15px;
+                background-clip: padding-box;
+                border: 1px solid #dcdcdc;
+                font-size: 10px;
+                color: #575757;
+                line-height: 30px;
+                text-align: center;
+            }
         }
       }
     }
