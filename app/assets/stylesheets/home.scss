@@ -228,3 +228,39 @@ h2 {
     }
   }
 }
+footer {
+  .footer_menu {
+    letter-spacing: 0.0312em;
+    line-height: 1.375em;
+    margin: 1em auto;
+    max-width: 1004px;
+    min-height: 23px;
+    text-align: center;
+      list-style-type: none;
+      display: block;
+      list-style-type: disc;
+      -webkit-margin-before: 1em;
+      -webkit-margin-after: 1em;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+      -webkit-padding-start: 40px;
+      li {
+        display: inline-block;
+        float: none;
+        a {
+          color: #778f9c;
+          font-family: 'Lato',Helvetica,Arial,sans-serif;
+          font-size: 16px;
+          margin: 0 0.0625em 0.1875em 0;
+          padding: 0.1875em 0.25em 0;
+          .rborder {
+            border-right: 1px solid #54636d;
+            display: inline-block;
+            height: 11px;
+            margin-left: 0.375em;
+            vertical-align: middle;
+          }
+        }
+      }
+  }
+}
