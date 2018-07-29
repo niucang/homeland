@@ -119,7 +119,7 @@ gem "homeland-jobs", "~> 0.3.0"
 gem "homeland-note", "~> 0.2.0"
 gem "homeland-press", "~> 0.4.0"
 gem "homeland-site",  "~> 0.2.0"
-gem "homeland-wiki", "~> 0.4.0"
+gem "homeland-wiki", "0.4.3", git: 'https://github.com/niucang/homeland-wiki.git'
 
 gem "sdoc", "~> 1.0.0.rc3"
 
