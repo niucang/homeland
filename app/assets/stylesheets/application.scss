@@ -584,3 +584,13 @@ img.emoji { width:20px; height:20px; }
     width: 45px;
   }
 }
+#homeland-wiki {
+  .markdown img {
+    width: 100%;
+  }
+  .markdown-toc {
+    .toc-container {
+      display: none;
+    }
+  }
+}
