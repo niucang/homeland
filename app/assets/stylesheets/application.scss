@@ -590,7 +590,7 @@ img.emoji { width:20px; height:20px; }
   }
   .markdown-toc {
     .toc-container {
-      display: none;
+      display: none!important;
     }
   }
 }
