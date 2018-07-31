@@ -174,12 +174,10 @@ Devise.setup do |config|
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists. Default is [:html]
   # config.navigational_formats = [:html, :iphone]
-  if Setting.has_module? :github
-    config.omniauth :github, Setting.github_token, Setting.github_secret
-    config.omniauth :wechat, 'wxbb148ad3c5f93818', '58d401c627f816a48a0c41436c27562b'
+    # config.omniauth :github, Setting.github_token, Setting.github_secret
+  config.omniauth :wechat, 'wxbb148ad3c5f93818', '58d401c627f816a48a0c41436c27562b'
     # config.omniauth :wechat, 'wx6f2624167cafb39d', 'ba0f2c1275cb28295740cab31fdba113'
-    config.omniauth :open_wechat, 'wxa7296fe90d86c9ad', 'd5069fd721651a305340da8488e0ee21'
-  end
+  config.omniauth :open_wechat, 'wxa7296fe90d86c9ad', 'd5069fd721651a305340da8488e0ee21'
   # config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id', :require => 'omniauth-openid'
 
   # ==> Warden configuration
