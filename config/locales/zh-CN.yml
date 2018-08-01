@@ -20,7 +20,7 @@
     attributes:
       user:
         name: "名字"
-        login: "用户名"
+        login: "登录名"
         email: "Email"
         email_public: "公开 Email"
         avatar: "头像"

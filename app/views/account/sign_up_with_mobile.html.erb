@@ -4,14 +4,11 @@
   <div class="col"></div>
   <div class="col-lg-6">
     <div class="card">
-      <div class="card-header"><%= t("users.register_user")%></div>
+      <div class="card-header">手机注册</div>
       <div class="card-body">
         <%= form_for resource, as: resource_name, url: create_with_mobile_account_path(resource_name), remote: true do |f| %>
         <div class="form-group">
           <%= f.text_field :login, class: "form-control input-lg", placeholder: t("users.login"), hint: t("users.suggest_using_twitter_id") %>
-        </div>
-        <div class="form-group">
-          <%= f.text_field :name, class: "form-control input-lg", placeholder: t("activerecord.attributes.user.name") %>
         </div>
         <div class="form-group">
           <div class="input-group">
@@ -26,10 +23,12 @@
         <div class="form-group">
         <%= f.password_field :password, class: "form-control input-lg", placeholder: "密码默认手机号后六位" %>
         </div>
+        <div class="form-group">
+        <%= f.password_field :password_confirmation, class: "form-control input-lg", placeholder: '密码默认手机号后六位' %>
+        </div>
 
         <div class="form-group">
           <%= f.submit t('users.submit_new_user'), class: "btn btn-lg btn-primary", 'data-disable-with' => t("common.submitting") %>
-          <%= link_to t("common.login"), new_session_path(resource_name), class: "btn btn-lg btn-default hide-ios" %>
         </div>
         <% end %>
       </div>
