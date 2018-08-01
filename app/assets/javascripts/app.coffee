@@ -437,13 +437,13 @@ document.addEventListener 'turbolinks:load',  ->
     setInterval (->
       $.get '/auth/sso/close_window', (e) ->
         i = i + 1
-        if i > 600
+        if i > 1000
           window.location.reload();
         if e.login
           current_wnidow.close();
           window.location.reload();
       return
-    ), 1000
+    ), 500
     return false
 document.addEventListener 'turbolinks:click', (event) ->
   if event.target.getAttribute('href').charAt(0) is '#'
