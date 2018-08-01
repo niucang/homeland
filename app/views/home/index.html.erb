@@ -25,7 +25,7 @@
               登录
             </div>
             <div class="card-body">
-              <%= link_to omniauth_authorize_path(:user, :open_wechat), class: 'btn btn-primary btn-block btn-wechat' do %>
+              <%= link_to omniauth_authorize_path(:user, :open_wechat), class: 'btn btn-primary btn-block btn-wechat ' + (mobile? ? '' : 'open-wechat') do %>
                 <i class="fa fa-wechat"></i>
                 微信扫码登录
               <% end %>

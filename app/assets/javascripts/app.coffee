@@ -441,6 +441,7 @@ document.addEventListener 'turbolinks:load',  ->
           window.location.reload();
         if e.login
           current_wnidow.close();
+          window.location.reload();
       return
     ), 1000
     return false
