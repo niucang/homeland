@@ -46,7 +46,7 @@
           <%= link_to raw("<i class='fa fa-mobile'></i> 手机"), sign_up_with_mobile_account_path, class: "btn btn-default btn-lg btn-block" %>
         </li>
         <li class="list-group-item">
-          <%= link_to raw("<i class='fa fa-wechat'></i> 微信"), omniauth_authorize_path(:user, mobile? ? :wechat : :open_wechat), class: "btn btn-default btn-lg btn-block" %>
+          <%= link_to raw("<i class='fa fa-wechat'></i> 微信"), omniauth_authorize_path(:user, mobile? ? :wechat : :open_wechat), class: "btn btn-default btn-lg btn-block " + (mobile? ? '' : 'open-wechat') %>
         </li>
         <% if Setting.has_module? :github %>
         <li class="list-group-item">

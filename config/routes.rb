@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       collection do
         get :login
         get :provider
+        get :close_window
       end
     end
   end
