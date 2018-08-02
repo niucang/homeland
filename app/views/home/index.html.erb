@@ -1,5 +1,5 @@
 <% if !mobile? %>
-<div class="hide-ios">
+<div class="hide-ios" id="swiper">
   <!-- <%= raw Setting.index_html %> -->
   <div class="card hidden-xs">
     <div class="card-body" style="text-align: center;">
@@ -16,21 +16,22 @@
         </div>
       </div>
     </div>
+    <% if !current_user %>
     <div class="row login">
       <div class="col"></div>
       <div class="col-md-4">
         <div class="card">
             <div class="card-header">
-              <ul class="nav nav-pills card-header-pills">
-                <li class="nav-item">
-                  <a class="nav-link active password-login" href="#">账号密码登录</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link qrcode-login" href="#">扫码登录</a>
-                </li>
-              </ul>
+              登录
             </div>
             <div class="card-body">
+              <%= link_to omniauth_authorize_path(:user, :open_wechat), class: 'btn btn-primary btn-block btn-wechat ' + (mobile? ? '' : 'open-wechat') do %>
+                <i class="fa fa-wechat"></i>
+                微信扫码登录
+              <% end %>
+              <div class="login-form-line">
+                <p class="or text-center">或</p>
+              </div>
               <form class="new_user login-password" id="new_user" action="/account/sign_in" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
                 <div class="form-group">
                   <input class="form-control input-lg" placeholder="用户名 / Email" type="text" name="user[login]" id="user_login">
@@ -48,10 +49,10 @@
                 </div>
 
                 <div class="form-actions">
-                  <input type="submit" name="commit" value="登录" class="btn btn-primary btn-block" data-disable-with="登录中...">
+                  <input type="submit" name="commit" value="登录" class="btn btn-primary" data-disable-with="登录中...">
+                  <%= link_to '注册', '/account/sign_up_with_mobile', class: 'btn btn-outline-primary login-password' %>
                 </div>
               </form>
-              <%= link_to '注册', '/account/sign_up', class: 'btn btn-outline-primary btn-block login-password' %>
               <div class="qrcode" style="display: none;">
                 <div class="qr_safe_tips">安全登录，防止被盗</div>
                 <img src="/images/pic2.jpg" alt="" class="qr-img">
@@ -63,66 +64,67 @@
           </div>
       </div>
     </div>
+    <% end %>
   </div>
 
   <div class="row home-icons hidden-sm hidden-xs">
     <div class="col-md-2">
       <div class="item item1">
         <div class="icon">
-          <a href="/topics"><img src="/images/pic1.jpg"></a>
+          <a href=<%= section_path(Setting.house)%>><img src="/images/pic1.jpg"></a>
         </div>
         <div class="text">
-          <a href="/topics">房源租售 <i class="pull-right fa fa-arrow-right"></i></a>
+          <a href=<%= section_path(Setting.house)%>>房源租售 <i class="pull-right fa fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
     <div class="col-md-2">
       <div class="item item2">
         <div class="icon">
-          <a href="/wiki"><img src="/images/pic2.jpg"></a>
+          <a href=<%= section_path(Setting.job)%>><img src="/images/pic2.jpg"></a>
         </div>
         <div class="text">
-          <a href="/wiki">求职招聘 <i class="pull-right fa fa-arrow-right"></i></a>
+          <a href=<%= section_path(Setting.job)%>>求职招聘 <i class="pull-right fa fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
     <div class="col-md-2">
       <div class="item item3">
         <div class="icon">
-          <a href="/jobs"><img src="/images/pic3.jpg"></a>
+          <a href=<%= section_path(Setting.food)%>><img src="/images/pic3.jpg"></a>
         </div>
         <div class="text">
-          <a href="/jobs">餐饮娱乐 <i class="pull-right fa fa-arrow-right"></i></a>
+          <a href=<%= section_path(Setting.food)%>>餐饮娱乐 <i class="pull-right fa fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
     <div class="col-md-2">
       <div class="item item4">
         <div class="icon">
-          <a href="/topics/popular"><img src="/images/pic4.jpg"></a>
+          <a href=<%= section_path(Setting.play)%>><img src="/images/pic4.jpg"></a>
         </div>
         <div class="text">
-          <a href="/topics/popular">游山玩水 <i class="pull-right fa fa-arrow-right"></i></a>
+          <a href=<%= section_path(Setting.play)%>>游山玩水 <i class="pull-right fa fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
     <div class="col-md-2">
       <div class="item item4">
         <div class="icon">
-          <a href="/topics/popular"><img src="/images/pic5.jpg"></a>
+          <a href=<%= section_path(Setting.buy)%>><img src="/images/pic5.jpg"></a>
         </div>
         <div class="text">
-          <a href="/topics/popular">商家中心 <i class="pull-right fa fa-arrow-right"></i></a>
+          <a href=<%= section_path(Setting.buy)%>>商家中心 <i class="pull-right fa fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
     <div class="col-md-2">
       <div class="item item4">
         <div class="icon">
-          <a href="/topics/popular"><img src="/images/pic6.jpg"></a>
+          <a href=<%= section_path(Setting.notice)%>><img src="/images/pic6.jpg"></a>
         </div>
         <div class="text">
-          <a href="/topics/popular">社区小喇叭 <i class="pull-right fa fa-arrow-right"></i></a>
+          <a href=<%= section_path(Setting.notice)%>>社区小喇叭 <i class="pull-right fa fa-arrow-right"></i></a>
         </div>
       </div>
     </div>

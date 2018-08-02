@@ -27,7 +27,7 @@
           </ul>
         <% end %>
       <% else %>
-        <%= render 'node_selector' %>
+        <%= render 'topics/node_selector' %>
         <ul class="filter nav nav-pills">
           <li><a href="#" class="all-nodes" data-toggle="modal" data-target="#node-selector">所有节点 <span class="caret-right"></span></a></li>
           <li class="<%= ' active' if action_name == 'index' %>">

@@ -5,6 +5,7 @@
  *= require jquery.atwho
  *= require jquery.fluidbox
  *= require swiper.min
+ *= require video-js
  *= require_self
  */
 
@@ -581,5 +582,15 @@ img.emoji { width:20px; height:20px; }
 #navbar-header {
   img {
     width: 45px;
+  }
+}
+#homeland-wiki {
+  .markdown img {
+    width: 100%;
+  }
+  .markdown-toc {
+    .toc-container {
+      display: none!important;
+    }
   }
 }

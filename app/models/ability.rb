@@ -26,6 +26,7 @@ class Ability
       roles_for_replies
       roles_for_comments
       roles_for_photos
+      roles_for_videos
       roles_for_teams
       roles_for_team_users
       basic_read_only
@@ -67,6 +68,13 @@ class Ability
       can :create, Photo
       can :update, Photo, user_id: user.id
       can :destroy, Photo, user_id: user.id
+    end
+
+    def roles_for_videos
+      can :tiny_new, Video
+      can :create, Video
+      can :update, Video, user_id: user.id
+      can :destroy, Video, user_id: user.id
     end
 
     def roles_for_comments

@@ -30,6 +30,7 @@ class User
             user.name  = data["name"]
             user.login = Homeland::Username.sanitize(data["nickname"])
             user.github = data["nickname"]
+            user.remote_avatar_url = data["headimgurl"]
 
             if user.login.blank?
               user.login = "u#{Time.now.to_i}"
@@ -63,7 +64,7 @@ class User
             end
 
             if User.where(login: user.login).exists?
-              user.login = "#{user.name}-wechat" # TODO: possibly duplicated user login here. What should we do?
+              user.login = "#{user.login}-wechat" # TODO: possibly duplicated user login here. What should we do?
             end
 
             user.password = Devise.friendly_token[0, 20]

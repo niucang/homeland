@@ -119,7 +119,7 @@ gem "homeland-jobs", "~> 0.3.0"
 gem "homeland-note", "~> 0.2.0"
 gem "homeland-press", "~> 0.4.0"
 gem "homeland-site",  "~> 0.2.0"
-gem "homeland-wiki", "~> 0.4.0"
+gem "homeland-wiki", "0.4.3", git: 'https://github.com/niucang/homeland-wiki.git'
 
 gem "sdoc", "~> 1.0.0.rc3"
 
@@ -136,6 +136,7 @@ gem 'mina-puma', require: false
 gem 'mina-sidekiq', require: false
 gem "omniauth-wechat-oauth2", '0.1.2', git: 'https://github.com/niucang/omniauth-wechat-oauth2.git'
 gem 'chinese_pinyin'
+gem 'videojs_rails'
 
 group :development do
   gem "derailed"

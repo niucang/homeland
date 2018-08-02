@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :devices
   resources :teams
+  resources :sections, only: [:show]
 
   if Setting.has_module?(:home)
     root to: "home#index"
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
       collection do
         get :login
         get :provider
+        get :close_window
       end
     end
   end
@@ -95,6 +97,7 @@ Rails.application.routes.draw do
   end
 
   resources :photos
+  resources :videos
   resources :likes
 
   get "/search", to: "search#index", as: "search"
@@ -119,6 +122,7 @@ Rails.application.routes.draw do
       end
     end
     resources :photos
+    resources :videos
     resources :comments
     resources :locations
     resources :applications
@@ -136,6 +140,7 @@ Rails.application.routes.draw do
       resource :likes
       resources :nodes
       resources :photos
+      resources :videos
       resources :notifications do
         collection do
           post :read

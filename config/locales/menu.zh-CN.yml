@@ -67,7 +67,7 @@
     replies_count: "回复"
     likes_count: 赞
     has_deleted: 已删除
-    auth_with_other_services: "用其他平台的帐号登录"
+    auth_with_other_services: "其它注册方式"
     captcha: '验证码'
     search_result: '搜索结果'
   reply:
@@ -95,7 +95,7 @@
   mail:
     login_from: "登录页面地址"
     this_is_a_notification_mail_please_do_not_reply: "这是一封提醒邮件，请勿直接通过邮件回复."
-    welcome_subject: "欢迎加入 %{app_name} 社区"
+    welcome_subject: "欢迎加入 %{app_name}"
     welcome_title: "欢迎加入 %{app_name}"
     you_have_successfully: "你已经成功在"
     registered_an_account: "注册了账号。"

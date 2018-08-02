@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <%= javascript_include_tag "video", 'data-turbolinks-track': "reload" %>
+  <%= stylesheet_link_tag "application", 'data-turbolinks-track': "reload" %>
+</head>
+<body class="page-<%= controller_name %><%= ' infinite-scroll' if turbolinks_app? %>" data-controller-name="<%= controller_name %>">
+  <div style="height: 450px">
+    <%= videojs_rails sources: {mp4: @video.content_url}, setup: "{}", controls: true, fluid: true, class: 'vjs-big-play-centered vjs-fluid', width: '100%', height: '100%' %>
+  </div>
+</body>
+</html>
+<script>
+  console.log(screen.height, screen.width)
+</script>

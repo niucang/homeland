@@ -76,5 +76,9 @@ module Auth
 
       redirect_to sso.to_url(sso.return_sso_url)
     end
+
+    def close_window
+      render json: {login: current_user.present?}
+    end
   end
 end

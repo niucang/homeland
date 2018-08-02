@@ -430,7 +430,21 @@ document.addEventListener 'turbolinks:load',  ->
     pagination:
       el: ".swiper-pagination"
       clickable: true)
-
+  $(".open-wechat").click (e) ->
+    e.preventDefault
+    current_wnidow = window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500');
+    i = 0
+    setInterval (->
+      $.get '/auth/sso/close_window', (e) ->
+        i = i + 1
+        if i > 1000
+          window.location.reload();
+        if e.login
+          current_wnidow.close();
+          window.location.reload();
+      return
+    ), 500
+    return false
 document.addEventListener 'turbolinks:click', (event) ->
   if event.target.getAttribute('href').charAt(0) is '#'
     event.preventDefault()

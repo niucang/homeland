@@ -5,5 +5,5 @@
   <% if admin? current_user %><a href="/admin">后台</a> | <% end %>
 <% end %>
 <% else %>
-  <%= link_to('加入社区', new_user_registration_path)  %>
+  <%= link_to('加入社区', sign_up_with_mobile_account_path)  %>
 <% end %>
