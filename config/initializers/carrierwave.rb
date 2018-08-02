@@ -51,6 +51,7 @@ CarrierWave.configure do |config|
     config.qiniu_bucket        = Setting.upload_bucket
     config.qiniu_bucket_domain = Setting.upload_url
     config.qiniu_styles = [:thumb, :large]
+    config.qiniu_protocol = Setting.protocol
   else
     config.storage = :file
   end
