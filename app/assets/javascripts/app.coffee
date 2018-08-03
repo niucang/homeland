@@ -423,13 +423,23 @@ window.App =
 
 document.addEventListener 'turbolinks:load',  ->
   window._appView = new AppView()
-  new Swiper('.swiper-container',
+  new Swiper('.swiper-container.home',
     autoplay:
       delay: 2500
       disableOnInteraction: false
     pagination:
       el: ".swiper-pagination"
       clickable: true)
+  new Swiper('.markdown .swiper-container',
+    autoplay:
+      delay: 2500
+      disableOnInteraction: false
+    pagination:
+      el: ".swiper-pagination"
+      clickable: true
+    navigation:
+      nextEl: '.swiper-button-next'
+      prevEl: '.swiper-button-prev')
   $(".open-wechat").click (e) ->
     e.preventDefault
     current_wnidow = window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500');
