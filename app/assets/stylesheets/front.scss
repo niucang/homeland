@@ -921,15 +921,16 @@ textarea.div-dropzone-focus { border-color: #BBE1C9; background: #fafafa; }
     }
   }
 }
-.page-topics {
+.page-sections {
   .suggest_topics {
     .card {
       margin-bottom: 1rem;
     }
     .card-img-top {
-      padding: 10px 40px;
+      padding: 20px 15px;
     }
     .card-body {
+      padding-top: 0;
       text-align: center;
       font-size: 13px;
     }
