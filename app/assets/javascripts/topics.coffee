@@ -127,7 +127,7 @@ window.TopicView = Backbone.View.extend
     # $('.markdown .swiper-container').append("<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>")
     $('p img:first-child').each (e) ->
       $(this).parent().find("img").each ->
-        return if exceptClasses.indexOf($(el).attr("class")) != -1
+        return if exceptClasses.indexOf($(this).attr("class")) != -1
         $(this).addClass("card-img-top")
         $(this).wrap("<div class='card'></div>")
       $(this).parent().parent().find('.card').wrapAll("<div class='card-deck'></div>")
