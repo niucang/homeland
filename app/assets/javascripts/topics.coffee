@@ -118,20 +118,22 @@ window.TopicView = Backbone.View.extend
     exceptClasses = ["emoji", "twemoji", "media-object avatar-16"]
     imgEls = $(".markdown img")
     console.log('initContentImageZoom')
+    # $('p img:first-child').each (e) ->
+    #   $(this).parent().find("img").each ->
+    #     return if exceptClasses.indexOf($(el).attr("class")) != -1
+    #     $(this).addClass('swiper-zoom-container')
+    #     $(this).wrap("<div class='swiper-slide'></div>")
+    #   $(this).parent().parent().find('.swiper-slide').wrapAll("<div class='swiper-container'><div class='swiper-wrapper'></div></div>")
+    # $('.markdown .swiper-container').append("<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>")
     $('p img:first-child').each (e) ->
       $(this).parent().find("img").each ->
-        return if exceptClasses.indexOf($(el).attr("class"))
-        $(this).addClass('swiper-zoom-container')
-        $(this).wrap("<div class='swiper-slide'></div>")
-        console.log(1)
-      console.log(2)
-      console.log($(this).parent().children())
-      $(this).parent().parent().find('.swiper-slide').wrapAll("<div class='swiper-container'><div class='swiper-wrapper'></div></div>")
-    $('.markdown .swiper-container').append("<div class='swiper-button-prev'></div><div class='swiper-button-next'></div>")
-
+        return if exceptClasses.indexOf($(el).attr("class")) != -1
+        $(this).addClass("card-img-top")
+        $(this).wrap("<div class='card'></div>")
+      $(this).parent().parent().find('.card').wrapAll("<div class='card-deck'></div>")
     for el in imgEls
       if exceptClasses.indexOf($(el).attr("class")) == -1
-        $(el).wrap("<a href='#{$(el).attr("src")}' class='hello' data-action='zoom'></a>")
+        $(el).wrap("<a href='#{$(el).attr("src")}' class='zoom-image' data-action='zoom'></a>")
 
     # Bind click event
     if App.turbolinks || App.mobile

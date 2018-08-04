@@ -907,3 +907,16 @@ textarea.div-dropzone-focus { border-color: #BBE1C9; background: #fafafa; }
     i.fa { color: #aaa; }
   }
 }
+.markdown {
+  .card-deck {
+    .card{
+      border-top: 1px solid #e5e6e9;
+      max-width: 50%;
+      min-width: 24%;
+      margin-bottom: 15px;
+      @media (max-width: 767px) {
+        max-width: 100%;
+      }
+    }
+  }
+}
