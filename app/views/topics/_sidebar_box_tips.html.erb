@@ -1,6 +1,56 @@
-<div class="card">
-  <div class="card-header">小帖士</div>
-  <div class="card-body">
-    <%= random_tips %>
+<div class="card-cloumns suggest_topics">
+  <div class="card">
+    <a href=<%= section_path(Setting.notice)%> class="zoom-image fluidbox" data-action="zoom">
+      <img src="/images/pic6.jpg" title="" alt="" class="card-img-top" style="opacity: 1;">
+      <div class="card-body">
+        <p class="card-text">社区小喇叭，服务千万家</p>
+        <p class="card-text">公示公告、生活导航、物业服务及时惠民</p>
+      </div>
+    </a>
+  </div>
+  <div class="card">
+    <a href=<%= section_path(Setting.house)%> class="zoom-image fluidbox" data-action="zoom">
+      <img src="/images/pic1.jpg" title="" alt="" class="card-img-top" style="opacity: 1;">
+      <div class="card-body">
+        <p class="card-text">房东与需求者一对一真实接洽</p>
+        <p class="card-text">海量房源租售信息，无任何中介费</p>
+      </div>
+    </a>
+  </div>
+  <div class="card">
+    <a href=<%= section_path(Setting.buy)%> class="zoom-image fluidbox" data-action="zoom">
+      <img src="/images/pic5.jpg" title="" alt="" class="card-img-top" style="opacity: 1;">
+      <div class="card-body">
+        <p class="card-text">普惠社区，创新生活</p>
+        <p class="card-text">小镇店铺、让利促销、海外代购便宜到家</p>
+      </div>
+    </a>
+  </div>
+  <div class="card">
+    <a href=<%= section_path(Setting.job)%> class="zoom-image fluidbox" data-action="zoom">
+      <img src="/images/pic2.jpg" title="" alt="" class="card-img-top" style="opacity: 1;">
+      <div class="card-body">
+        <p class="card-text">普惠社区百姓，快速匹配好工作</p>
+        <p class="card-text">最新最全最准确的求职招聘信息</p>
+      </div>
+    </a>
+  </div>
+  <div class="card">
+    <a href=<%= section_path(Setting.play)%> class="zoom-image fluidbox" data-action="zoom">
+      <img src="/images/pic4.jpg" title="" alt="" class="card-img-top" style="opacity: 1;">
+      <div class="card-body">
+        <p class="card-text">提高幸福感，共奔小康社会</p>
+        <p class="card-text">共享游玩乐趣，约定结伴出门旅行</p>
+      </div>
+    </a>
+  </div>
+  <div class="card">
+    <a href=<%= section_path(Setting.food)%> class="zoom-image fluidbox" data-action="zoom">
+      <img src="/images/pic3.jpg" title="" alt="" class="card-img-top" style="opacity: 1;">
+      <div class="card-body">
+        <p class="card-text">畅享小镇美好阳光生活</p>
+        <p class="card-text">商务酒楼、美食小店、休闲娱乐一应俱全</p>
+      </div>
+    </a>
   </div>
 </div>
