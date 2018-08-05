@@ -1,0 +1,30 @@
+<% cache(["index_locations", CacheVersion.section_node_updated_at]) do %>
+<div class="index-sections card">
+  <div class="card-header"><%= t("common.index_node_navigation")%></div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <% sections = Section.includes(:nodes).all %>
+        <% max_deep = sections.max{|a| a.nodes.length}.nodes.length %>
+        <tr>
+          <% sections.each do |section| %>
+            <th><%= link_to section.name, section_path(section.id) %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% max_deep.times do |x| %>
+        <tr>
+          <% sections.each do |s| %>
+            <td>
+              <% node = s.nodes[x] %>
+              <%= node ? link_to(node.name, node_topics_path(node), title: node.name, data: { id: node.id }) : '' %>
+            </td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
