@@ -6,3 +6,13 @@
     <%= render 'form' %>
   </div>
 </div>
+<style media="screen">
+  #node-selector thead a {
+    cursor: not-allowed;
+  }
+</style>
+<script type="text/javascript">
+  $('#node-selector thead a').click(function(){
+    return false;
+  })
+</script>

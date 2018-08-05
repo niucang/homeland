@@ -19,6 +19,7 @@ window.TopicView = Backbone.View.extend
     "click #node-selector .nodes .name a": "nodeSelectorNodeSelected"
     "click .editor-toolbar .reply-to a.close": "unsetReplyTo"
     "tap .topics .topic": "topicRowClick"
+    "click #node-selector tbody a": "nodeSelectorNodeSelected"
 
   initialize: (opts) ->
     @parentView = opts.parentView
