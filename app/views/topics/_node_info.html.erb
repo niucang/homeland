@@ -36,18 +36,18 @@
           <li class="<%= ' active' if action_name == 'excellent' %>">
             <a href="<%= main_app.excellent_topics_path %>" data-turbolinks-action="replace"><i class="fa fa-diamond"></i> 精华帖</a>
           </li>
-          <li class="<%= ' active' if action_name == 'popular' %>">
+          <!-- <li class="<%= ' active' if action_name == 'popular' %>">
             <a href="<%= main_app.popular_topics_path %>" data-turbolinks-action="replace">优质帖子</a>
-          </li>
+          </li> -->
           <% if admin? %>
           <li class="<%= ' active' if action_name == 'ban' %>">
             <%= link_to('已屏蔽', main_app.ban_topics_path, data: { 'turbolinks-action': 'replace' }) %>
           </li>
           <% end %>
           <% if !mobile? %>
-          <li class="<%= ' active' if action_name == 'no_reply' %>">
+          <!-- <li class="<%= ' active' if action_name == 'no_reply' %>">
             <%= link_to('无人问津', main_app.no_reply_topics_path, data: { 'turbolinks-action': 'replace' }) %>
-          </li>
+          </li> -->
           <li class="<%= ' active' if action_name == 'last_reply' %>">
             <%= link_to('最新回复', main_app.last_reply_topics_path, data: { 'turbolinks-action': 'replace' }) %>
           </li>
