@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     controllers applications: "oauth/applications",
                 authorized_applications: "oauth/authorized_applications"
   end
+  get '/tenement', to: 'teams#index'
 
   resources :comments
   resources :devices
