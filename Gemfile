@@ -134,7 +134,7 @@ gem 'mina', require: false
 gem 'mina-puma', require: false
 # mina sidekiq
 gem 'mina-sidekiq', require: false
-gem "omniauth-wechat-oauth2", '0.1.3', git: 'https://github.com/niucang/omniauth-wechat-oauth2.git'
+gem "omniauth-wechat-oauth2", '0.1.4', git: 'https://github.com/niucang/omniauth-wechat-oauth2.git'
 gem 'chinese_pinyin'
 gem 'videojs_rails'
 
