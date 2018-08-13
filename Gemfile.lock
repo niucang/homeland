@@ -14,9 +14,9 @@ GIT
 
 GIT
   remote: https://github.com/niucang/omniauth-wechat-oauth2.git
-  revision: 3e51661ce836de4c171167cd8545948d577a526f
+  revision: e06557c27cd71b9396f6f52059bc3c0a83220f5c
   specs:
-    omniauth-wechat-oauth2 (0.1.2)
+    omniauth-wechat-oauth2 (0.1.3)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
 
@@ -545,7 +545,7 @@ DEPENDENCIES
   notifications
   omniauth
   omniauth-github
-  omniauth-wechat-oauth2 (= 0.1.2)!
+  omniauth-wechat-oauth2 (= 0.1.3)!
   pg
   pghero
   postmark
