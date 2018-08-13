@@ -10,7 +10,7 @@
     <li class="nav-item"><a class="nav-link <%= current_page?('/topics') ? 'active' : ''%>" href="/topics">社区</a></li>
     <!-- <li class="nav-item"><a class="nav-link <%= current_page?('/posts') ? 'active' : ''%>" href="/posts">头条</a></li>
     <li class="nav-item"><a class="nav-link <%= current_page?('/sections/2') || Section.find(Setting.job).nodes.map{|n| "/topics/node#{n.id}"}.include?(request.url) ? 'active' : ''%>" href=<%= Rails.application.routes.url_helpers.section_path(Setting.job) %>>招聘</a></li> -->
-    <li class="nav-item"><a class="nav-link <%= current_page?('/topics/node10') ? 'active' : ''%>" href="/tenement">物业</a></li>
+    <li class="nav-item"><a class="nav-link <%= current_page?('/topics/node10') ? 'active' : ''%>" href="/topics/node10">物业</a></li>
     <li class="nav-item"><a class="nav-link <%= current_page?('/wiki/cooperation') ? 'active' : ''%>" href="/wiki/cooperation">合作</a></li>
   </ul>
   <%= raw Setting.navbar_html %>
