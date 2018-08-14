@@ -15,6 +15,11 @@ class User
       self.admin? || verified == true
     end
 
+    # 是否有物业板块发布权限
+    def wuye?
+      self.admin? || is_wuye == true
+    end
+
     # 回帖大于 150 的才有酷站的发布权限
     def site_editor?
       self.admin? || replies_count >= 100
@@ -32,6 +37,7 @@ class User
       case role
       when :admin then admin?
       when :wiki_editor then wiki_editor?
+      when :wuye then wuye?
       when :site_editor then site_editor?
       when :member then self.normal?
       else false

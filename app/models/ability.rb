@@ -48,6 +48,11 @@ class Ability
       can :destroy, Topic do |topic|
         topic.user_id == user.id && topic.replies_count == 0
       end
+      if user.roles?(:wuye)
+        can :create_wuye_topic, Topic, node_id: Setting.wuye_node_id
+      else
+        cannot :create_wuye_topic, Topic, node_id: Setting.wuye_node_id
+      end
     end
 
     def roles_for_replies

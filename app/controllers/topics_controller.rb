@@ -75,6 +75,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
     @topic.node_id = params[:node] || topic_params[:node_id]
+    raise CanCan::AccessDenied if !current_user.wuye? && !can?(:create_wuye_topic, @topic)
     @topic.team_id = ability_team_id
     @topic.save
   end
