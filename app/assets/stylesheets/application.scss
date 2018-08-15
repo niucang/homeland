@@ -68,7 +68,12 @@ textarea,
 
 /* Bootstrap Theme */
 body {
-  background: #e5e5e5;
+  // background: #e5e5e5;
+  background: url(https://cdn.puhuishequ.cn/photo/2018/5d65be85-7c1c-4ebe-bbaf-3ddacea55093.svg),url(https://cdn.puhuishequ.cn/photo/2018/778a2c85-77f6-478e-8a40-31db5e295f1c.svg);
+  background-size: auto, contain;
+  background-position: left top, right top;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
   color: $primary;
   font-family: Helvetica, Arial, "PingFang SC", "Noto Sans", Roboto, "Microsoft Yahei", sans-serif;
   font-size: 14px;
