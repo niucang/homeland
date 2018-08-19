@@ -113,7 +113,7 @@ class Topic < ApplicationRecord
   end
 
   def images
-    body.scan(/!\[\]\(([^!\[\]]*)[^\(\p{Han}]\)/).map(&:first)
+    body.scan(/!\[\]\(([^!\[\]\(\p{Han}]*)\)/).map(&:first)
   end
 
   def method_name
