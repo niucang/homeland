@@ -315,6 +315,9 @@
     .card-img-top {
       height: 6vw;
       object-fit: cover;
+      @media (max-width: 480px) {
+        height: 22vw;
+      }
     }
   }
 }
