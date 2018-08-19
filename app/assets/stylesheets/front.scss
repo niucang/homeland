@@ -280,9 +280,52 @@
       a.state-true,
       a:visited { background: #f0f0f0; }
     }
+    div[class^='col-md-'] {
+      margin-left: 0;
+      padding-left: 0;
+    }
+    .media-right {
+      padding-right: 0px;
+    }
+    .card-deck {
+      text-align: right;
+      padding-right: 0px;
+      display: block;
+    }
+    .card {
+      margin-left: 0px;
+      display: inline-block;
+      margin-right: 8px;
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+    .col-md-9 {
+      .card {
+        max-width: 100%;
+        min-width: 100%;
+      }
+    }
+    .col-md-6 {
+      .card {
+        max-width: 28%;
+        min-width: 28%;
+      }
+    }
   }
 }
-
+.topics-index {
+  .topic {
+    margin-right: -30px;
+  }
+}
+.home_suggest_topics {
+  .topic {
+    .count {
+      margin-left: 15px;
+    }
+  }
+}
 .topic-detail {
   margin-bottom: 15px;
 

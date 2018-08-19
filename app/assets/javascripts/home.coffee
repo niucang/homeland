@@ -1,11 +1,10 @@
-# document.addEventListener 'turbolinks:load', ->
-#   $('.nav-link').click (e) ->
-#     return false
-#     $('.row.login .nav-link').removeClass('active')
-#     $(this).addClass('active')
-#     if $('.password-login').hasClass('active')
-#       $('.login-password').show()
-#       $('.qrcode').hide()
-#     else
-#       $('.login-password').hide()
-#       $('.qrcode').show()
+document.addEventListener 'turbolinks:load', ->
+  if App.turbolinks || App.mobile
+    $('a.zoom-image').attr("target","_blank")
+  else
+    $('a.zoom-image').fluidbox
+      overlayColor: "#FFF"
+      closeTrigger: [ {
+        selector: 'window'
+        event: 'scroll'
+      } ]

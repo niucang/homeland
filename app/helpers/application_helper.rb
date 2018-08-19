@@ -145,4 +145,14 @@ module ApplicationHelper
     text = escape_once(text).gsub("[h]", "<em>").gsub("[/h]", "</em>").gsub(/\\n|\\r/, "")
     raw text
   end
+
+  def image_thumb(img_url)
+    regexp = /\?(.*)\z/
+    thumb_query = '?imageView2/1/w/168/h/106'
+    if img_url.match(regexp)
+      img_url.sub(/\?(.*)\z/, thumb_query)
+    else
+      "#{img_url}#{thumb_query}"
+    end
+  end
 end

@@ -1,33 +1,45 @@
-<% cache([topic, topic.user_avatar_raw, suggest]) do %>
-<div class="topic media topic-<%= topic.id %>">
-  <div class="avatar">
-    <%= user_avatar_tag(topic.user, :md) %>
-  </div>
-  <div class="infos media-body">
-    <div class="title media-heading">
-      <%= link_to(main_app.topic_path(topic), title: topic.title) do %>
-        <%= raw content_tag(:span, topic.node_name, class: 'node') %>
-        <%= topic.title %>
-      <% end %>
-      <% if suggest %>
-        <i class="fa fa-angle-double-up" title="置顶"></i>
-      <% end %>
-      <%= topic_excellent_tag(topic) %>
-      <%= topic_close_tag(topic) %>
+<% image_size ||= 3 %>
+<% cache([topic, topic.user_avatar_raw, suggest, image_size]) do %>
+<div class="topic media topic-<%= topic.id %> row">
+  <div class="col-md-<%= 11 - image_size * 2 %>" style='display: flex'>
+    <div class="avatar">
+      <%= user_avatar_tag(topic.user, :md) %>
     </div>
-    <div class="info">
-      <%= user_name_tag(topic.user) %>
-      <span class="hidden-mobile">
-      •
-      <% if topic.last_reply_user_login.blank? %>
-        <%= raw t("common.created_at", time: timeago(topic.created_at))%>
-      <% else %>
-        <%= t("common.last_by")%> <%= user_name_tag(topic.last_reply_user_login) %> <%= raw t("common.reply_at", time: timeago(topic.replied_at))%>
-      <% end %>
-      </span>
+    <div class="infos media-body">
+      <div class="title media-heading">
+        <%= link_to(main_app.topic_path(topic), title: topic.title) do %>
+          <%= raw content_tag(:span, topic.node_name, class: 'node') %>
+          <span><%= topic.title %></span>
+        <% end %>
+        <% if suggest %>
+          <i class="fa fa-angle-double-up" title="置顶"></i>
+        <% end %>
+        <%= topic_excellent_tag(topic) %>
+        <%= topic_close_tag(topic) %>
+      </div>
+      <div class="info">
+        <%= user_name_tag(topic.user) %>
+        <span class="hidden-mobile">
+        •
+        <% if topic.last_reply_user_login.blank? %>
+          <%= raw t("common.created_at", time: timeago(topic.created_at))%>
+        <% else %>
+          <%= t("common.last_by")%> <%= user_name_tag(topic.last_reply_user_login) %> <%= raw t("common.reply_at", time: timeago(topic.replied_at))%>
+        <% end %>
+        </span>
+      </div>
     </div>
   </div>
-  <div class="count media-right">
+  <div class="col-md-<%= image_size * 2 %> card-deck">
+    <% topic.images.first(image_size).each do |image| %>
+    <div class="card">
+      <a href="<%= image %>" class='zoom-image' data-action='zoom'>
+        <img src="<%= image_thumb(image) %>" class='card-img-top'></img>
+      </a>
+    </div>
+    <%end%>
+  </div>
+  <div class="count media-right col-md-1">
     <% if topic.replies_count > 0 %>
       <%= link_to(topic.replies_count,"#{main_app.topic_path(topic)}#reply-#{topic.last_reply_id}", class: "state-false") %>
     <% end %>

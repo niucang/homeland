@@ -51,7 +51,7 @@ class Topic < ApplicationRecord
   before_create { self.last_active_mark = Time.now.to_i }
 
   def self.fields_for_list
-    columns = %w[body who_deleted]
+    columns = %w[who_deleted]
     select(column_names - columns.map(&:to_s))
   end
 
@@ -110,5 +110,13 @@ class Topic < ApplicationRecord
       @total_pages = 60
     end
     @total_pages
+  end
+
+  def images
+    body.scan(/!\[\]\(([^!\[\]]*)\)/).map(&:first)
+  end
+
+  def method_name
+    'https://cdn.puhuishequ.cn/photo/2018/911e81d3-e72c-4f1b-a1ec-518bceb8f601.jpg?imageView2/1/w/168/h/106'
   end
 end
