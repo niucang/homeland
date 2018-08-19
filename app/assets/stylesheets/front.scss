@@ -312,6 +312,10 @@
         min-width: 28%;
       }
     }
+    .card-img-top {
+      height: 6vw;
+      object-fit: cover;
+    }
   }
 }
 .topics-index {
