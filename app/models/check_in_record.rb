@@ -1,0 +1,2 @@
+class CheckInRecord < ApplicationRecord
+end

@@ -692,4 +692,12 @@ describe User, type: :model do
       expect(res.length).to eq 2
     end
   end
+
+  describe "check_in" do
+    it "should check in success if not check" do
+      expect(user.check_in_today?).to be_falsey
+      expect(user.check_in!).to be_truthy
+      expect(user.check_in_today?).to be_truthy
+    end
+  end
 end

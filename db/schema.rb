@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_152746) do
+ActiveRecord::Schema.define(version: 2018_08_22_151708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 2018_08_14_152746) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["provider", "uid"], name: "index_authorizations_on_provider_and_uid"
+  end
+
+  create_table "check_in_records", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_check_in_records_on_created_at"
+    t.index ["user_id"], name: "index_check_in_records_on_user_id"
   end
 
   create_table "commentable_pages", force: :cascade do |t|
