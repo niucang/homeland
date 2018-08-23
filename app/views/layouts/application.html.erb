@@ -113,5 +113,29 @@
     ga('send', 'pageview');
   </script>
   <div class="zoom-overlay"></div>
+  <div class="fixed-bottom">
+    <% check_in_today = current_user.check_in_today? %>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <div class="card-title">
+              签到有礼
+            </div>
+            <div class='card-text'>
+              您已连续签到<%= current_user&.coutinuous_days || 0 %>天！
+            </div>
+            <% unless current_user.check_in_today? %>
+              <%= link_to "马上签到", checkin_index_path, class: 'btn btn-info'%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn <%= check_in_today ? 'btn-success' : 'btn-warning' %> type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <i class="fa <%= check_in_today ? 'fa-calendar-check-o' : 'fa-calendar' %>"></i>
+      <%= check_in_today ? ' 已签到' : ' 我要签到' %>
+    </button>
+  </div>
 </body>
 </html>

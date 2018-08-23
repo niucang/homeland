@@ -5,7 +5,8 @@ require "digest/md5"
 class User < ApplicationRecord
   include Searchable
   include User::Roles, User::Blockable, User::Likeable, User::Followable, User::TopicActions,
-          User::GitHubRepository, User::ProfileFields, User::RewardFields, User::Omniauthable
+          User::GitHubRepository, User::ProfileFields, User::RewardFields, User::Omniauthable,
+          User::CheckinAble
 
   second_level_cache expires_in: 2.weeks
 
@@ -31,7 +32,6 @@ class User < ApplicationRecord
   has_many :team_users
   has_many :teams, through: :team_users
   has_one :sso, class_name: "UserSSO", dependent: :destroy
-  has_many :check_in_records
 
   attr_accessor :password_confirmation
 
@@ -226,14 +226,5 @@ class User < ApplicationRecord
       return true if saved_change_to_attribute?(key)
     end
     false
-  end
-
-  def check_in_today?
-    check_in_records.where(created_at: Time.now.beginning_of_day...Time.now.end_of_day).exists?
-  end
-
-  def check_in!
-    raise 'Check out Error' if check_in_today?
-    check_in_records.create!
   end
 end

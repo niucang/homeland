@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :devices
   resources :teams
   resources :sections, only: [:show]
+  resources :checkin
 
   if Setting.has_module?(:home)
     root to: "home#index"
